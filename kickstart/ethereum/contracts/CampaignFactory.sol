@@ -13,6 +13,7 @@ contract CampaignFactory {
     }
 }
 
+// Rinkeby version: 2
 contract Campaign {
     struct Request {
         string description;
@@ -79,5 +80,21 @@ contract Campaign {
         
         request.recipient.transfer(request.value);
         request.complete = true;
+    }
+    
+    function getSummary() public view 
+        returns (uint, uint, uint, uint, address) 
+    {
+        return (
+            minimumContribution,
+            this.balance,
+            requests.length,
+            approverCount,
+            manager
+        );
+    }
+    
+    function getRequestsCount() public view returns (uint) {
+        return requests.length;
     }
 }
