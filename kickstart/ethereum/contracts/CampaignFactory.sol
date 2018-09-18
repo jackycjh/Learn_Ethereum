@@ -44,6 +44,7 @@ contract Campaign {
         require(msg.value > minimumContribution);
         
         approvers[msg.sender] = true;
+        // TODO: This is a bug, the count should not increment for existing approver.
         approverCount++;
     }
     
